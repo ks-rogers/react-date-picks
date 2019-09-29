@@ -8,7 +8,7 @@ const StyledYearMonthHeader = styled.div<YearMonthHeaderProps>``
 export const YearMonthHeader: React.FC<YearMonthHeaderProps> = props => {
   return (
     <StyledYearMonthHeader {...props}>
-      <YearMonthButton />
+      <YearMonthButton {...props} />
     </StyledYearMonthHeader>
   )
 }
