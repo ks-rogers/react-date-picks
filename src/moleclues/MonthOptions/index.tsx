@@ -14,23 +14,26 @@ const StyledMonthOptions = styled.div<MonthOptionsProps>({
 })
 
 export const MonthOptions: React.FC<ButtonProps> = props => {
-  const { currentMonthYear, setCurrentMonthYear, setPickerOpen, setMonthSelectOpen } = props
+  const { value, setPickerOpen, setMonthSelectOpen, handleChange } = props
 
   const renderOptions = () => {
     let options = []
-    for (let i = 1; i <= 12; i += 1) {
+    for (let iM = 1; iM <= 12; iM += 1) {
       options.push(
         <MonthOption
           href=""
-          key={`month-${i.toString()}`}
+          key={`month-${iM.toString()}`}
           onClick={e => {
             e.preventDefault()
-            setCurrentMonthYear(moment(currentMonthYear, 'YYYY MM').format(`YYYY ${i} `))
+            handleChange(moment(value, 'YYYY-M-DD').format(`YYYY-${iM}`))
+            {
+              /* setCurrentMonthYear(moment(currentMonthYear, 'YYYY M').format(`YYYY ${i} `)) */
+            }
             setPickerOpen(false)
             setMonthSelectOpen(false)
           }}
         >
-          {i}
+          {iM}
         </MonthOption>
       )
     }

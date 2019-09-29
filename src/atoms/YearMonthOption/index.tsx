@@ -10,6 +10,7 @@ const originalProps = {
   alignItems: 'center',
   width: '25%',
   position: 'relative',
+  textDecoration: 'none',
   transition: 'none',
   cursor: 'pointer',
   ':hover': {

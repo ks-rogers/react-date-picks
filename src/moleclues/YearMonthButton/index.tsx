@@ -7,24 +7,25 @@ interface YearMonthButtonProps extends React.HTMLAttributes<HTMLDivElement> {}
 const StyledYearMonthButton = styled.div<YearMonthButtonProps>``
 
 export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
-  console.log(props)
+  const { setYearSelectOpen, setMonthSelectOpen, currentMonthYear } = props
+
   return (
     <StyledYearMonthButton {...props}>
       <SelectButton
         onClick={() => {
-          props.setYearSelectOpen(true)
-          props.setMonthSelectOpen(false)
+          setYearSelectOpen(true)
+          setMonthSelectOpen(false)
         }}
       >
-        {moment(props.currentMonthYear).format('YYYY')}
+        {moment(currentMonthYear).format('YYYY')}
       </SelectButton>
       <SelectButton
         onClick={() => {
-          props.setYearSelectOpen(false)
-          props.setMonthSelectOpen(true)
+          setYearSelectOpen(false)
+          setMonthSelectOpen(true)
         }}
       >
-        {moment(props.currentMonthYear).format('M')}
+        {moment(currentMonthYear).format('M')}
       </SelectButton>
     </StyledYearMonthButton>
   )

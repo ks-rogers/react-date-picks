@@ -13,23 +13,26 @@ const StyledYearOptions = styled.div<YearOptionsProps>({
 })
 
 export const YearOptions: React.FC<ButtonProps> = props => {
-  const { currentMonthYear, setCurrentMonthYear, setYearSelectOpen, setMonthSelectOpen } = props
+  const { value, setYearSelectOpen, setMonthSelectOpen, handleChange } = props
 
   const renderOptions = () => {
     let options = []
-    for (let i = 2019; i > 2019 - 12; i -= 1) {
+    for (let iY = 2019; iY > 2019 - 12; iY -= 1) {
       options.push(
         <YearOption
           href=""
-          key={`years-${i.toString()}`}
+          key={`years-${iY.toString()}`}
           onClick={e => {
             e.preventDefault()
-            setCurrentMonthYear(moment(currentMonthYear, 'YYYY M').format(`${i} M`))
+            handleChange(moment(value, 'YYYY-M-DD').format(`${iY}-MM`))
+            {
+              /* setCurrentMonthYear(moment(currentMonthYear, 'YYYY M').format(`${iY} M`)) */
+            }
             setYearSelectOpen(false)
             setMonthSelectOpen(true)
           }}
         >
-          {i}
+          {iY}
         </YearOption>
       )
     }
