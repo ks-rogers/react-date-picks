@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Override } from '../overrides'
+import { OverridesT, getOverrideCSSProperties } from '../helpers/overrides'
 import { DateField } from '../atoms'
 import { YearMonthHeader, YearMonthBody } from '../organisms'
 import moment from 'moment'
@@ -15,10 +15,10 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 interface RootOverrides {
-  Root?: Override<any>
+  Root?: OverridesT
 }
 
-const StyledRoot = styled.div({
+const RootTemplate = {
   position: 'relative',
   marginTop: '16px',
   border: '1px solid #cccccc',
@@ -44,7 +44,7 @@ const StyledRoot = styled.div({
     borderBottom: '15px solid #ffffff',
     borderLeft: '15px solid transparent'
   }
-})
+}
 
 export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
   const { overrides = {}, handleChange, locale = 'en', dateFormat = 'YYYY-M-DD', value, placeholder } = props
@@ -56,6 +56,8 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
   const [pickerOpen, setPickerOpen] = useState(false)
   const [yearSelectOpen, setYearSelectOpen] = useState(false)
   const [monthSelectOpen, setMonthSelectOpen] = useState(false)
+
+  const StyledRoot = styled.div(getOverrideCSSProperties(RootTemplate, overrides.Root))
 
   return (
     <React.Fragment>

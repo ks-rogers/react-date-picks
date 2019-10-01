@@ -2,22 +2,26 @@ import * as React from 'react'
 
 export type ConfigurationOverrideObjectT = {} | TemplateStringsArray
 
-export type OverrideObjectT<T> = {
+export type OverrideObjectT = {
   style?: ConfigurationOverrideObjectT
 }
 
-export type OverrideT<T> = OverrideObjectT<T> | React.ComponentType<T>
+export type OverrideT = OverrideObjectT | React.ComponentType
 
-export type OverridesT<T> = {
-  [key: string]: OverrideT<T>
+export type OverridesT = {
+  [key: string]: OverrideT
 }
 
 export const getOverrideCSSProperties = (
   originalProps: ConfigurationOverrideObjectT,
-  overrideProps: ConfigurationOverrideObjectT
+  overrideProps: OverridesT
 ): ConfigurationOverrideObjectT => {
+  if (!overrideProps) {
+    return originalProps
+  }
+
   return {
     ...originalProps,
-    ...overrideProps
+    ...overrideProps.style
   }
 }

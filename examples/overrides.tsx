@@ -18,7 +18,7 @@ const Test: React.FC = () => {
         placeholder="year month"
         overrides={{
           Root: {
-            style: { fontSize: '30px' }
+            style: { width: '100%' }
           }
         }}
       />
