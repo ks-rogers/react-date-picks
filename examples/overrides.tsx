@@ -6,13 +6,22 @@ import moment from 'moment'
 
 const Test: React.FC = () => {
   const [value, setValue] = useState(moment(new Date(), 'YYYY M').format('YYYY M'))
-  const handleChange = value => {
+  const handleChange = (value: string) => {
     setValue(value)
   }
   return (
     <div>
-      <h2>Sample Components Example</h2>
-      <ReactDatePicks value={value} handleChange={handleChange} dateFormat="YYYY M" placeholder="year month" />
+      <h2>Component Override</h2>
+      <ReactDatePicks
+        value={value}
+        handleChange={handleChange}
+        placeholder="year month"
+        overrides={{
+          Root: {
+            style: { fontSize: '30px' }
+          }
+        }}
+      />
     </div>
   )
 }

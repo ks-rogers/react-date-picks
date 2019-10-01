@@ -1,18 +1,23 @@
-import * as React from 'react'
+import React, { Dispatch, SetStateAction, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { YearMonthOption as YearOption } from '../../atoms'
 import moment from 'moment'
 
-interface YearOptionsProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface YearOptionsProps extends HTMLAttributes<HTMLDivElement> {
+  handleChange: (target: string) => void
+  setYearSelectOpen: Dispatch<SetStateAction<boolean>>
+  setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
+  value: string
+}
 
-const StyledYearOptions = styled.div<YearOptionsProps>({
+const StyledYearOptions = styled.div({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
   width: '100%'
 })
 
-export const YearOptions: React.FC<ButtonProps> = props => {
+export const YearOptions: React.FC<YearOptionsProps> = props => {
   const { value, setYearSelectOpen, setMonthSelectOpen, handleChange } = props
 
   const renderOptions = () => {

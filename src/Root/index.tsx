@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Override } from '../overrides'
 import { DateField } from '../atoms'
 import { YearMonthHeader, YearMonthBody } from '../organisms'
 import moment from 'moment'
@@ -10,20 +11,44 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   dateFormat?: string
   placeholder: string
   locale?: string
+  overrides?: RootOverrides
 }
 
-const StyledRoot = styled.div<RootProps>({
+interface RootOverrides {
+  Root?: Override<any>
+}
+
+const StyledRoot = styled.div({
+  position: 'relative',
   marginTop: '16px',
   border: '1px solid #cccccc',
   borderRadius: '4px',
   padding: '16px',
   background: '#fff',
-  width: '100%'
+  width: '480px',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    left: '20px',
+    top: '-15px',
+    borderRight: '15px solid transparent',
+    borderBottom: '15px solid #cccccc',
+    borderLeft: '15px solid transparent'
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    left: '20px',
+    top: '-14px',
+    borderRight: '15px solid transparent',
+    borderBottom: '15px solid #ffffff',
+    borderLeft: '15px solid transparent'
+  }
 })
 
 export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
-  const { handleChange, locale = 'en', dateFormat = 'YYYY-M-DD', value, placeholder } = props
-
+  const { overrides = {}, handleChange, locale = 'en', dateFormat = 'YYYY-M-DD', value, placeholder } = props
+  console.log(overrides)
   useEffect(() => {
     if (locale !== 'en') moment.locale(locale)
   }, [locale])
@@ -35,7 +60,6 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
   return (
     <React.Fragment>
       <DateField
-        readonly
         onClick={() => {
           setPickerOpen(true)
           setYearSelectOpen(true)
@@ -45,7 +69,6 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
           setPickerOpen(true)
           setYearSelectOpen(true)
         }}
-        readOnly
         value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
       />
       {pickerOpen && (
@@ -54,6 +77,7 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
             setYearSelectOpen={setYearSelectOpen}
             setMonthSelectOpen={setMonthSelectOpen}
             setPickerOpen={setPickerOpen}
+            value={value}
           />
           <YearMonthBody
             handleChange={handleChange}

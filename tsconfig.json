@@ -17,7 +17,8 @@
       "noImplicitUseStrict":false,
       "baseUrl":"src/",
       "listFiles":false,
-      "noEmitHelpers":true
+      "noEmitHelpers":true,
+      "esModuleInterop": true
    },
    "include":[
       "src/**/*"

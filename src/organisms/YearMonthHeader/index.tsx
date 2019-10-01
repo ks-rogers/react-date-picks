@@ -1,7 +1,13 @@
-import * as React from 'react'
+import React, { Dispatch, HTMLAttributes, SetStateAction } from 'react'
 import styled from 'styled-components'
 import { YearMonthButton } from '../../moleclues'
-interface YearMonthHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+interface YearMonthHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  setYearSelectOpen: Dispatch<SetStateAction<boolean>>
+  setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
+  setPickerOpen: Dispatch<SetStateAction<boolean>>
+  value: string
+}
 
 const StyledYearMonthHeader = styled.div<YearMonthHeaderProps>``
 

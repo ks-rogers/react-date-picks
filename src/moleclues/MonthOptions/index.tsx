@@ -1,11 +1,16 @@
-import * as React from 'react'
+import React, { Dispatch, SetStateAction, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { YearMonthOption as MonthOption } from '../../atoms'
 import moment from 'moment'
 
-interface MonthOptionsProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface MonthOptionsProps extends HTMLAttributes<HTMLDivElement> {
+  handleChange: (target: string) => void
+  setPickerOpen: Dispatch<SetStateAction<boolean>>
+  setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
+  value: string
+}
 
-const StyledMonthOptions = styled.div<MonthOptionsProps>({
+const StyledMonthOptions = styled.div({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -13,7 +18,7 @@ const StyledMonthOptions = styled.div<MonthOptionsProps>({
   textDecoration: 'none'
 })
 
-export const MonthOptions: React.FC<ButtonProps> = props => {
+export const MonthOptions: React.FC<MonthOptionsProps> = props => {
   const { value, setPickerOpen, setMonthSelectOpen, handleChange } = props
 
   const renderOptions = () => {
@@ -26,9 +31,6 @@ export const MonthOptions: React.FC<ButtonProps> = props => {
           onClick={e => {
             e.preventDefault()
             handleChange(moment(value, 'YYYY-M-DD').format(`YYYY-${iM}`))
-            {
-              /* setCurrentMonthYear(moment(currentMonthYear, 'YYYY M').format(`YYYY ${i} `)) */
-            }
             setPickerOpen(false)
             setMonthSelectOpen(false)
           }}

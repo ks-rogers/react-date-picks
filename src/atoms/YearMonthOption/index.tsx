@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import { getOverrideCSSProperties } from '../../helpers/overrides'
 
-interface YearMonthOptionProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
+interface YearMonthOptionProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
 
-const originalProps = {
+const yearMonthOptionStringArray = {
   display: 'flex',
   background: 'none',
   justifyContent: 'center',
@@ -13,21 +14,16 @@ const originalProps = {
   textDecoration: 'none',
   transition: 'none',
   cursor: 'pointer',
+  color: '#000000',
   ':hover': {
     backgroundColor: '#C4C4C4'
   }
 }
 
-const overrideProps = {
-  padding: '15px 0'
-}
-
-const StyledYearMonthOption = styled.a<YearMonthOptionProps>({
-  ...originalProps,
-  ...overrideProps
-})
-
-export const YearMonthOption: React.FC<ButtonProps> = props => {
+export const YearMonthOption: React.FC<YearMonthOptionProps> = props => {
   const { children } = props
+
+  const StyledYearMonthOption = styled.a(getOverrideCSSProperties(yearMonthOptionStringArray, { color: 'red' }))
+
   return <StyledYearMonthOption {...props}>{children}</StyledYearMonthOption>
 }
