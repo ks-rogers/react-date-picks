@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react'
-import { ReactDatePicks } from '../src'
+import React, { useState, Fragment } from 'react'
+import { DatePicker } from '../src'
 import '../assets/index.less'
 import moment from 'moment'
 
@@ -12,6 +12,9 @@ const ComponentsOptions = [
   'YearMonthButton',
   'YearOptions',
   'DateField',
+  'Label',
+  'Divider',
+  'DateFieldLabeled',
   'YearMonthOption',
   'SelectButton'
 ]
@@ -22,36 +25,37 @@ const Test: React.FC = () => {
   const handleChange = (value: string) => {
     setValue(value)
   }
-  const updateOperator = value => {
+  const updateOperator = (value: string) => {
     setSelectValue(value)
   }
   return (
     <div>
       <h2>Component Override</h2>
       <div>
-        <select
-          value={selectValue}
-          onChange={e => {
-            updateOperator(e.target.value)
-          }}
-        >
-          {ComponentsOptions.map(data => {
-            return (
-              <option key={data} value={data}>
-                {data}
-              </option>
-            )
-          })}
-        </select>
+        {ComponentsOptions.map(data => {
+          return (
+            <Fragment key={data}>
+              <label>{data}</label>
+              <input
+                type="radio"
+                name="component"
+                value={data}
+                onChange={e => updateOperator(e.target.value)}
+                checked={data === selectValue}
+              />{' '}
+              <br />
+            </Fragment>
+          )
+        })}
       </div>
 
-      <ReactDatePicks
+      <DatePicker
         value={value}
         handleChange={handleChange}
         placeholder="year month"
         overrides={{
           [selectValue]: {
-            style: { backgroundColor: '#F7BFA5' }
+            style: { backgroundColor: '#F7BFA5', padding: '15px' }
           }
         }}
       />

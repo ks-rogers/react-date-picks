@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { OverridesT, getOverrideCSSProperties } from '../helpers/overrides'
-import { DateField } from '../atoms'
+import { ComponentOverrides, getOverrideCSSProperties } from '../helpers/overrides'
+import { Divider } from '../atoms'
+import { DateFieldLabeled } from '../molecules'
 import { YearMonthHeader, YearMonthBody } from '../organisms'
 import moment from 'moment'
 
@@ -11,11 +12,7 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   dateFormat?: string
   placeholder: string
   locale?: string
-  overrides?: RootOverrides
-}
-
-interface RootOverrides {
-  Root?: OverridesT
+  overrides?: ComponentOverrides
 }
 
 const RootTemplate = {
@@ -23,9 +20,9 @@ const RootTemplate = {
   marginTop: '16px',
   border: '1px solid #cccccc',
   borderRadius: '4px',
-  padding: '16px',
+  padding: '0 0 16px 0',
   background: '#fff',
-  width: '480px',
+  width: '380px',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -46,9 +43,9 @@ const RootTemplate = {
   }
 }
 
-export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
+export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
   const { overrides = {}, handleChange, locale = 'en', dateFormat = 'YYYY-M-DD', value, placeholder } = props
-  console.log(overrides)
+
   useEffect(() => {
     if (locale !== 'en') moment.locale(locale)
   }, [locale])
@@ -61,7 +58,7 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
 
   return (
     <React.Fragment>
-      <DateField
+      <DateFieldLabeled
         onClick={() => {
           setPickerOpen(true)
           setYearSelectOpen(true)
@@ -72,6 +69,7 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
           setYearSelectOpen(true)
         }}
         value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
+        overrides={overrides}
       />
       {pickerOpen && (
         <StyledRoot>
@@ -80,7 +78,9 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
             setMonthSelectOpen={setMonthSelectOpen}
             setPickerOpen={setPickerOpen}
             value={value}
+            overrides={overrides}
           />
+          <Divider overrides={overrides} />
           <YearMonthBody
             handleChange={handleChange}
             setPickerOpen={setPickerOpen}
@@ -89,6 +89,7 @@ export const ReactDatePicks: React.FC<RootProps> = (props: RootProps) => {
             value={value}
             yearSelectOpen={yearSelectOpen}
             monthSelectOpen={monthSelectOpen}
+            overrides={overrides}
           />
         </StyledRoot>
       )}

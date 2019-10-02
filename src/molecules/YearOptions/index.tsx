@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
 import { YearMonthOption as YearOption } from '../../atoms'
 import moment from 'moment'
 
@@ -8,17 +9,20 @@ interface YearOptionsProps extends HTMLAttributes<HTMLDivElement> {
   setYearSelectOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string
+  overrides: ComponentOverrides
 }
 
-const StyledYearOptions = styled.div({
+const YearOptionsTemplate = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
   width: '100%'
-})
+}
 
 export const YearOptions: React.FC<YearOptionsProps> = props => {
-  const { value, setYearSelectOpen, setMonthSelectOpen, handleChange } = props
+  const { value, setYearSelectOpen, setMonthSelectOpen, handleChange, overrides } = props
+
+  const StyledYearOptions = styled.div(getOverrideCSSProperties(YearOptionsTemplate, overrides.YearOptions))
 
   const renderOptions = () => {
     let options = []
@@ -30,12 +34,10 @@ export const YearOptions: React.FC<YearOptionsProps> = props => {
           onClick={e => {
             e.preventDefault()
             handleChange(moment(value, 'YYYY-M-DD').format(`${iY}-MM`))
-            {
-              /* setCurrentMonthYear(moment(currentMonthYear, 'YYYY M').format(`${iY} M`)) */
-            }
             setYearSelectOpen(false)
             setMonthSelectOpen(true)
           }}
+          overrides={overrides}
         >
           {iY}
         </YearOption>

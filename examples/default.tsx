@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react'
-import { ReactDatePicks } from '../src'
+import { DatePicker } from '../src'
 import '../assets/index.less'
 import moment from 'moment'
 
@@ -12,7 +12,7 @@ const Test: React.FC = () => {
   return (
     <div>
       <h2>Sample Components Example</h2>
-      <ReactDatePicks value={value} handleChange={handleChange} dateFormat="YYYY M" placeholder="year month" />
+      <DatePicker value={value} handleChange={handleChange} dateFormat="YYYY M" placeholder="year month" />
     </div>
   )
 }

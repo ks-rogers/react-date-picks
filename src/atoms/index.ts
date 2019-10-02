@@ -1,3 +1,5 @@
 export * from './DateField'
+export * from './Divider'
+export * from './Label'
 export * from './SelectButton'
 export * from './YearMonthOption'

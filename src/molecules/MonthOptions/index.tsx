@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
 import { YearMonthOption as MonthOption } from '../../atoms'
 import moment from 'moment'
 
@@ -8,18 +9,21 @@ interface MonthOptionsProps extends HTMLAttributes<HTMLDivElement> {
   setPickerOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string
+  overrides: ComponentOverrides
 }
 
-const StyledMonthOptions = styled.div({
+const MonthOptionsTemplate = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
   width: '100%',
   textDecoration: 'none'
-})
+}
 
 export const MonthOptions: React.FC<MonthOptionsProps> = props => {
-  const { value, setPickerOpen, setMonthSelectOpen, handleChange } = props
+  const { value, setPickerOpen, setMonthSelectOpen, handleChange, overrides } = props
+
+  const StyledMonthOptions = styled.div(getOverrideCSSProperties(MonthOptionsTemplate, overrides.MonthOptions))
 
   const renderOptions = () => {
     let options = []
@@ -34,6 +38,7 @@ export const MonthOptions: React.FC<MonthOptionsProps> = props => {
             setPickerOpen(false)
             setMonthSelectOpen(false)
           }}
+          overrides={overrides}
         >
           {iM}
         </MonthOption>
