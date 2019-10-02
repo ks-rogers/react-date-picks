@@ -9,6 +9,7 @@ interface DateFieldLabeledProps extends React.HTMLAttributes<HTMLDivElement> {
   overrides?: ComponentOverrides
   placeholder: string
   value: string
+  disabled: boolean
 }
 
 const DateFieldLabeledTemplate = {}
@@ -23,7 +24,7 @@ export const DateFieldLabeled: React.FC<DateFieldLabeledProps> = props => {
   return (
     <StyledDateFieldLabeled>
       <Label overrides={overrides}>{placeholder}</Label>
-      <DateField overrides={overrides} {...others} />
+      <DateField disabled overrides={overrides} {...others} />
     </StyledDateFieldLabeled>
   )
 }

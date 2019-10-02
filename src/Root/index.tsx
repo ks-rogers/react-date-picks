@@ -13,6 +13,7 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   placeholder: string
   locale?: string
   overrides?: ComponentOverrides
+  disabled?: boolean
 }
 
 const RootTemplate = {
@@ -44,7 +45,15 @@ const RootTemplate = {
 }
 
 export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
-  const { overrides = {}, handleChange, locale = 'en', dateFormat = 'YYYY-M-DD', value, placeholder } = props
+  const {
+    disabled = false,
+    overrides = {},
+    handleChange,
+    locale = 'en',
+    dateFormat = 'YYYY-M-DD',
+    value,
+    placeholder
+  } = props
 
   useEffect(() => {
     if (locale !== 'en') moment.locale(locale)
@@ -70,6 +79,7 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
         }}
         value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
         overrides={overrides}
+        disabled={disabled}
       />
       {pickerOpen && (
         <StyledRoot>
