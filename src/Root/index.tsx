@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ComponentOverrides, getOverrideCSSProperties } from '../helpers/overrides'
 import { Divider } from '../atoms'
 import { DateFieldLabeled } from '../molecules'
-import { YearMonthHeader, YearMonthBody } from '../organisms'
+import { YearMonthHeader, YearMonthBody, CalendarHeader, CalendarBody } from '../organisms'
 import moment from 'moment'
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -103,6 +103,10 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
           />
         </StyledRoot>
       )}
+      <StyledRoot>
+        <CalendarHeader overrides={overrides}></CalendarHeader>
+        <CalendarBody overrides={overrides} />
+      </StyledRoot>
     </React.Fragment>
   )
 }
