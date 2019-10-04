@@ -26,7 +26,7 @@ export const MonthOptions: React.FC<MonthOptionsProps> = props => {
   const StyledMonthOptions = styled.div(getOverrideCSSProperties(MonthOptionsTemplate, overrides.MonthOptions))
 
   const renderOptions = () => {
-    let options = []
+    const options = []
     for (let iM = 1; iM <= 12; iM += 1) {
       options.push(
         <MonthOption

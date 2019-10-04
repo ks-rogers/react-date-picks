@@ -17,9 +17,7 @@ const YearMonthButtonTemplate = {
 export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
   const { setYearSelectOpen, setMonthSelectOpen, value, overrides } = props
 
-  console.log(overrides.YearMonthButton)
   const StyledYearMonthButton = styled.div(getOverrideCSSProperties(YearMonthButtonTemplate, overrides.YearMonthButton))
-  console.log(StyledYearMonthButton)
 
   return (
     <StyledYearMonthButton>

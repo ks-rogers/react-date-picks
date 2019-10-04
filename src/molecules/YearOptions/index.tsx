@@ -25,7 +25,7 @@ export const YearOptions: React.FC<YearOptionsProps> = props => {
   const StyledYearOptions = styled.div(getOverrideCSSProperties(YearOptionsTemplate, overrides.YearOptions))
 
   const renderOptions = () => {
-    let options = []
+    const options = []
     for (let iY = 2019; iY > 2019 - 12; iY -= 1) {
       options.push(
         <YearOption
