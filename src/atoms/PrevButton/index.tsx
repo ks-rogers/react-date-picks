@@ -1,20 +1,36 @@
 import React, { ButtonHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
+import moment from 'moment'
 
 interface PrevButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   overrides: ComponentOverrides
+  handleChange: (target: string) => void
+  value: string
 }
 
-const PrevButtonTemplate = {}
+const PrevButtonTemplate = {
+  backgroundColor: 'Transparent',
+  backgroundRepeat: 'no-repeat',
+  border: 'none',
+  cursor: 'pointer',
+  overflow: 'hidden',
+  outline: 'none'
+}
 
 export const PrevButton: React.FC<PrevButtonProps> = props => {
-  const { overrides } = props
+  const { overrides, handleChange, value } = props
 
   const StyledPrevButton = styled.button(getOverrideCSSProperties(PrevButtonTemplate, overrides.PrevButton))
 
   return (
-    <StyledPrevButton>
+    <StyledPrevButton
+      onClick={e => {
+        e.preventDefault()
+        // TODO
+        handleChange(moment(value, 'YYYY-M-DD').format(`YYYY-MM-DD`))
+      }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

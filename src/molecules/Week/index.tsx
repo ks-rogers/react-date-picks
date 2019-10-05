@@ -20,13 +20,12 @@ export const Week: React.FC<WeekProps> = props => {
 
     for (let i = 0; i < Number(firstDayOfMonth); i++) {
       blanks.push(
-        <Day overrides={overrides} key={`day-blank-${i.toString()}`} className="calendar-day empty">
+        <Day overrides={overrides} key={`day-blank-${i.toString()}`}>
           {''}
         </Day>
       )
     }
     for (let d = 1; d <= moment().daysInMonth(); d++) {
-      // let currentDay = d == this.currentDay() ? 'today' : ''
       days.push(
         <Day overrides={overrides} key={`day-${d}`}>
           {d}
@@ -62,7 +61,17 @@ export const Week: React.FC<WeekProps> = props => {
   return (
     <StyledWeek>
       {getComponentsSlotsAsCalendarFormat().map((d, i) => {
-        return <tr key={`${d}-${i.toString()}`}>{d}</tr>
+        return (
+          <tr
+            onClick={e => {
+              const test: HTMLInputElement = e.target as HTMLInputElement
+              console.log(test.innerHTML)
+            }}
+            key={`${d}-${i.toString()}`}
+          >
+            {d}
+          </tr>
+        )
       })}
     </StyledWeek>
   )

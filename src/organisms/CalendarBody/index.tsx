@@ -5,6 +5,7 @@ import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/over
 
 interface CalendarBodyProps extends TableHTMLAttributes<HTMLTableElement> {
   overrides: ComponentOverrides
+  value: string
 }
 
 const CalendarBodyTemplate = {

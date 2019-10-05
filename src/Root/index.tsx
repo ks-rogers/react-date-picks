@@ -104,8 +104,12 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
         </StyledRoot>
       )}
       <StyledRoot>
-        <CalendarHeader overrides={overrides}></CalendarHeader>
-        <CalendarBody overrides={overrides} />
+        <CalendarHeader
+          value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
+          overrides={overrides}
+          handleChange={handleChange}
+        ></CalendarHeader>
+        <CalendarBody value={value && moment(value, 'YYYY-M-DD').format(dateFormat)} overrides={overrides} />
       </StyledRoot>
     </React.Fragment>
   )

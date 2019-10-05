@@ -5,6 +5,8 @@ import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/over
 
 interface CalendarHeaderProps extends HTMLAttributes<HTMLDivElement> {
   overrides: ComponentOverrides
+  value: string
+  handleChange: (target: string) => void
 }
 
 const CalendarHeaderTemplate = {
@@ -15,14 +17,14 @@ const CalendarHeaderTemplate = {
 }
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = props => {
-  const { overrides } = props
+  const { overrides, value, handleChange } = props
 
   const StyledCalendarHeader = styled.div(getOverrideCSSProperties(CalendarHeaderTemplate, overrides.CalendarHeader))
 
   return (
     <StyledCalendarHeader>
-      <YearSelectHeader overrides={overrides} />
-      <MonthSelectHeader overrides={overrides} />
+      <YearSelectHeader value={value} handleChange={handleChange} overrides={overrides} />
+      <MonthSelectHeader value={value} handleChange={handleChange} overrides={overrides} />
     </StyledCalendarHeader>
   )
 }
