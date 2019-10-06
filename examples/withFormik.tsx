@@ -2,7 +2,7 @@
 import React from 'react'
 import { DatePicker } from '../src'
 import '../assets/index.less'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { Formik, Field } from 'formik'
 
 const Test: React.FC = () => {
@@ -14,7 +14,7 @@ const Test: React.FC = () => {
         below.{' '}
       </p>
       <Formik
-        initialValues={{ date: moment(new Date(), 'YYYY-MM').format('YYYY MM') }}
+        initialValues={{ date: dayjs(new Date(), 'YYYY-MM').format('YYYY MM') }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2))
@@ -40,6 +40,7 @@ const DatePickerWithFormik = ({ form: { setFieldValue, values } }) => {
     <DatePicker
       value={values.date}
       placeholder="year month"
+      yearMonthPicker={true}
       handleChange={date => {
         setFieldValue('date', date)
       }}

@@ -9,7 +9,9 @@ interface WeekdayProps extends ThHTMLAttributes<HTMLTableHeaderCellElement> {
 const WeekdayTemplate = {
   color: '#aaaaaa',
   fontWeight: 400,
-  width: '14.28%'
+  width: '14.28%',
+  fontSize: '14px',
+  padding: '10px 0'
 }
 
 export const Weekday: React.FC<WeekdayProps> = props => {

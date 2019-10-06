@@ -1,25 +1,28 @@
 import React, { ButtonHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
-import moment from 'moment'
+import dayjs, { UnitType } from 'dayjs'
 
 interface PrevButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  overrides: ComponentOverrides
+  target: UnitType
   handleChange: (target: string) => void
   value: string
+  dateFormat: string
+  overrides: ComponentOverrides
 }
 
 const PrevButtonTemplate = {
+  padding: '5px 6px',
   backgroundColor: 'Transparent',
   backgroundRepeat: 'no-repeat',
-  border: 'none',
+  border: '1px solid #cccccc',
   cursor: 'pointer',
   overflow: 'hidden',
   outline: 'none'
 }
 
 export const PrevButton: React.FC<PrevButtonProps> = props => {
-  const { overrides, handleChange, value } = props
+  const { overrides, handleChange, value, target, dateFormat } = props
 
   const StyledPrevButton = styled.button(getOverrideCSSProperties(PrevButtonTemplate, overrides.PrevButton))
 
@@ -27,8 +30,15 @@ export const PrevButton: React.FC<PrevButtonProps> = props => {
     <StyledPrevButton
       onClick={e => {
         e.preventDefault()
-        // TODO
-        handleChange(moment(value, 'YYYY-M-DD').format(`YYYY-MM-DD`))
+
+        if (target === 'month') {
+          const prevMonth: number = dayjs(value).month() - 1
+          handleChange(
+            dayjs(value)
+              .set(target, prevMonth)
+              .format(dateFormat)
+          )
+        }
       }}
     >
       <svg

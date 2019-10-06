@@ -1,31 +1,35 @@
-import React, { HTMLAttributes } from 'react'
+import React, { HTMLAttributes, Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
-import { Day } from '../../atoms'
+import { Day, DayBlank } from '../../atoms'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
-import moment from 'moment'
+import dayjs from 'dayjs'
 interface WeekProps extends HTMLAttributes<HTMLTableSectionElement> {
+  handleChange: (target: string) => void
+  value: string
+  dateFormat: string
   overrides: ComponentOverrides
+  setDatePickerOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const WeekTemplate = {}
 
 export const Week: React.FC<WeekProps> = props => {
-  const { overrides } = props
+  const { overrides, value, handleChange, dateFormat, setDatePickerOpen } = props
   const getComponentsTotalSlots = () => {
     const blanks = []
     const days = []
-    const firstDayOfMonth = moment(moment())
+    const firstDayOfMonth = dayjs(value)
       .startOf('month')
       .format('d') // Day of week 0...1..5...6
 
-    for (let i = 0; i < Number(firstDayOfMonth); i++) {
+    for (let i = 0; i < +firstDayOfMonth; i++) {
       blanks.push(
-        <Day overrides={overrides} key={`day-blank-${i.toString()}`}>
+        <DayBlank overrides={overrides} key={`day-blank-${i.toString()}`}>
           {''}
-        </Day>
+        </DayBlank>
       )
     }
-    for (let d = 1; d <= moment().daysInMonth(); d++) {
+    for (let d = 1; d <= dayjs().daysInMonth(); d++) {
       days.push(
         <Day overrides={overrides} key={`day-${d}`}>
           {d}
@@ -37,8 +41,8 @@ export const Week: React.FC<WeekProps> = props => {
   }
 
   const getComponentsSlotsAsCalendarFormat = () => {
-    let rows: any[] = []
-    let cells: any[] = []
+    let rows: JSX.Element[][] = []
+    let cells: JSX.Element[] = []
     const totalSlots = getComponentsTotalSlots()
 
     totalSlots.map((row, i) => {
@@ -57,15 +61,21 @@ export const Week: React.FC<WeekProps> = props => {
     return rows
   }
   const StyledWeek = styled.tbody(getOverrideCSSProperties(WeekTemplate, overrides.Week))
-  console.log(getComponentsSlotsAsCalendarFormat())
+
   return (
     <StyledWeek>
       {getComponentsSlotsAsCalendarFormat().map((d, i) => {
         return (
           <tr
             onClick={e => {
-              const test: HTMLInputElement = e.target as HTMLInputElement
-              console.log(test.innerHTML)
+              const dayElement: HTMLInputElement = e.target as HTMLInputElement
+              const date: number = +dayElement.innerHTML
+              handleChange(
+                dayjs(value)
+                  .set('date', date)
+                  .format(dateFormat)
+              )
+              setDatePickerOpen(false)
             }}
             key={`${d}-${i.toString()}`}
           >

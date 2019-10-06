@@ -4,10 +4,12 @@ import { ComponentOverrides, getOverrideCSSProperties } from '../helpers/overrid
 import { Divider } from '../atoms'
 import { DateFieldLabeled } from '../molecules'
 import { YearMonthHeader, YearMonthBody, CalendarHeader, CalendarBody } from '../organisms'
-import moment from 'moment'
+import dayjs from 'dayjs'
+// import { default as dayjsLocale } from 'dayjs/locale/ja'
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
-  handleChange: () => void
+  yearMonthPicker: boolean
+  handleChange: (target: string) => void
   value: string
   dateFormat?: string
   placeholder: string
@@ -21,7 +23,7 @@ const RootTemplate = {
   marginTop: '16px',
   border: '1px solid #cccccc',
   borderRadius: '4px',
-  padding: '0 0 16px 0',
+  padding: '24px',
   background: '#fff',
   width: '380px',
   '&::before': {
@@ -49,68 +51,99 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
     disabled = false,
     overrides = {},
     handleChange,
-    locale = 'en',
-    dateFormat = 'YYYY-M-DD',
+    locale = 'en-ca',
+    dateFormat = 'YYYY-MM-DDTHH:mm:ssZ', // ISO08601
     value,
-    placeholder
+    placeholder,
+    yearMonthPicker = false
   } = props
 
+  const [localeMap, setLocaleMap] = useState(null)
+
   useEffect(() => {
-    if (locale !== 'en') moment.locale(locale)
+    const load = async () => {
+      await import(`dayjs/locale/${locale}`).then(data => {
+        setLocaleMap(data.default)
+      })
+    }
+    load()
   }, [locale])
 
-  const [pickerOpen, setPickerOpen] = useState(false)
+  const [yearMonthPickerOpen, setYearMonthPickerOpen] = useState(false)
+  const [datePickerOpen, setDatePickerOpen] = useState(false)
   const [yearSelectOpen, setYearSelectOpen] = useState(false)
   const [monthSelectOpen, setMonthSelectOpen] = useState(false)
-
   const StyledRoot = styled.div(getOverrideCSSProperties(RootTemplate, overrides.Root))
 
   return (
     <React.Fragment>
       <DateFieldLabeled
         onClick={() => {
-          setPickerOpen(true)
-          setYearSelectOpen(true)
+          if (yearMonthPicker) {
+            setYearMonthPickerOpen(true)
+            setYearSelectOpen(true)
+          }
+          if (!yearMonthPicker) {
+            setDatePickerOpen(true)
+          }
         }}
         placeholder={placeholder}
         onFocus={() => {
-          setPickerOpen(true)
-          setYearSelectOpen(true)
+          if (yearMonthPicker) {
+            setYearMonthPickerOpen(true)
+            setYearSelectOpen(true)
+          }
+          if (!yearMonthPicker) {
+            setDatePickerOpen(true)
+          }
         }}
-        value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
+        value={value && dayjs(value).format(dateFormat)}
         overrides={overrides}
         disabled={disabled}
       />
-      {pickerOpen && (
+
+      {!yearMonthPicker && datePickerOpen && (
+        <StyledRoot>
+          <CalendarHeader
+            value={value && dayjs(value).format(dateFormat)}
+            overrides={overrides}
+            handleChange={handleChange}
+            dateFormat={dateFormat}
+          ></CalendarHeader>
+          <CalendarBody
+            handleChange={handleChange}
+            localeMap={localeMap}
+            dateFormat={dateFormat}
+            value={value && dayjs(value).format(dateFormat)}
+            overrides={overrides}
+            setDatePickerOpen={setDatePickerOpen}
+          />
+        </StyledRoot>
+      )}
+
+      {yearMonthPicker && yearMonthPickerOpen && (
         <StyledRoot>
           <YearMonthHeader
             setYearSelectOpen={setYearSelectOpen}
             setMonthSelectOpen={setMonthSelectOpen}
-            setPickerOpen={setPickerOpen}
+            setYearMonthPickerOpen={setYearMonthPickerOpen}
             value={value}
             overrides={overrides}
           />
           <Divider overrides={overrides} />
           <YearMonthBody
             handleChange={handleChange}
-            setPickerOpen={setPickerOpen}
+            setYearMonthPickerOpen={setYearMonthPickerOpen}
             setYearSelectOpen={setYearSelectOpen}
             setMonthSelectOpen={setMonthSelectOpen}
             value={value}
             yearSelectOpen={yearSelectOpen}
             monthSelectOpen={monthSelectOpen}
             overrides={overrides}
+            dateFormat={dateFormat}
           />
         </StyledRoot>
       )}
-      <StyledRoot>
-        <CalendarHeader
-          value={value && moment(value, 'YYYY-M-DD').format(dateFormat)}
-          overrides={overrides}
-          handleChange={handleChange}
-        ></CalendarHeader>
-        <CalendarBody value={value && moment(value, 'YYYY-M-DD').format(dateFormat)} overrides={overrides} />
-      </StyledRoot>
     </React.Fragment>
   )
 }

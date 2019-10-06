@@ -1,5 +1,6 @@
 export * from './DateField'
 export * from './Day'
+export * from './DayBlank'
 export * from './Divider'
 export * from './Label'
 export * from './NextButton'

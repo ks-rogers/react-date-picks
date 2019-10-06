@@ -2,17 +2,23 @@
 import React, { useState } from 'react'
 import { DatePicker } from '../src'
 import '../assets/index.less'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const Test: React.FC = () => {
-  const [value, setValue] = useState(moment(new Date(), 'YYYY M').format('YYYY M'))
+  const [value, setValue] = useState(dayjs(new Date(), 'YYYY M').format('YYYY M'))
   const handleChange = value => {
     setValue(value)
   }
   return (
     <div>
       <h2>Sample Components Example</h2>
-      <DatePicker value={value} handleChange={handleChange} dateFormat="YYYY M" placeholder="year month" />
+      <DatePicker
+        value={value}
+        handleChange={handleChange}
+        dateFormat="YYYY-M-DD"
+        locale="ja"
+        placeholder="year month"
+      />
     </div>
   )
 }

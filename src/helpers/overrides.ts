@@ -29,8 +29,8 @@ export interface ComponentOverrides {
   Day?: OverridesT
   PrevButton?: OverridesT
   NextButton?: OverridesT
-  MonthSelectHeader?: OverridesT
-  YearSelectHeader?: OverridesT
+  YearMonthSelectHeader?: OverridesT
+  DayBlank?: OverridesT
 }
 
 export const getOverrideCSSProperties = (

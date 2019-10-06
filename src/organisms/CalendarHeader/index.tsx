@@ -1,10 +1,11 @@
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { YearSelectHeader, MonthSelectHeader } from '../../molecules'
+import { YearMonthSelectHeader } from '../../molecules'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
 
 interface CalendarHeaderProps extends HTMLAttributes<HTMLDivElement> {
   overrides: ComponentOverrides
+  dateFormat: string
   value: string
   handleChange: (target: string) => void
 }
@@ -12,19 +13,17 @@ interface CalendarHeaderProps extends HTMLAttributes<HTMLDivElement> {
 const CalendarHeaderTemplate = {
   maxHeight: '162px',
   overflowY: 'scroll',
-  overflowX: 'hidden',
-  padding: '0 16px'
+  overflowX: 'hidden'
 }
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = props => {
-  const { overrides, value, handleChange } = props
+  const { overrides, value, handleChange, dateFormat } = props
 
   const StyledCalendarHeader = styled.div(getOverrideCSSProperties(CalendarHeaderTemplate, overrides.CalendarHeader))
 
   return (
     <StyledCalendarHeader>
-      <YearSelectHeader value={value} handleChange={handleChange} overrides={overrides} />
-      <MonthSelectHeader value={value} handleChange={handleChange} overrides={overrides} />
+      <YearMonthSelectHeader dateFormat={dateFormat} value={value} handleChange={handleChange} overrides={overrides} />
     </StyledCalendarHeader>
   )
 }
