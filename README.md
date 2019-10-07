@@ -110,7 +110,79 @@ React.render(Sample, container)
 
 ### Override styles
 
+Each internal components is given an identifier and exposed as a target for overrides.
+When overriding style with overrides props, you can pass a style object.
 
+The style object you return from this API is deep merged with the default component styles.
+Please refer to the code snippet below.
+
+```js
+import React, { useState, Fragment } from 'react'
+import DatePicker from 'react-date-picks'
+import dayjs from 'dayjs'
+
+const ComponentsOptions = [
+  'Root',
+  'YearMonthHeader',
+  'YearMonthBody',
+  'MonthOptions',
+  'YearMonthButton',
+  'YearOptions',
+  'DateField',
+  'Label',
+  'Divider',
+  'DateFieldLabeled',
+  'YearMonthOption',
+  'SelectButton'
+]
+
+const Sample: React.FC = () => {
+  const [value, setValue] = useState(dayjs().format())
+  const [selectValue, setSelectValue] = useState('Root')
+  const handleChange = (value: string) => {
+    setValue(value)
+  }
+  const updateOperator = (value: string) => {
+    setSelectValue(value)
+  }
+  return (
+    <div>
+      <h2>Component Override</h2>
+      <div>
+        {ComponentsOptions.map(data => {
+          return (
+            <Fragment key={data}>
+              <label>{data}</label>
+              <input
+                type="radio"
+                name="component"
+                value={data}
+                onChange={e => updateOperator(e.target.value)}
+                checked={data === selectValue}
+              />{' '}
+              <br />
+            </Fragment>
+          )
+        })}
+      </div>
+
+      <DatePicker
+        value={value}
+        handleChange={handleChange}
+        yearMonthPicker={true}
+        placeholder="year month"
+        overrides={{
+          [selectValue]: {
+            style: { backgroundColor: '#F7BFA5', padding: '15px' }
+          }
+        }}
+      />
+    </div>
+  )
+}
+
+React.render(Sample, container)
+```
 
 ## API
 
