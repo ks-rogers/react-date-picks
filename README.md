@@ -2,7 +2,7 @@
 A date picker for your React app.
 
 Pick days, months, years.
-No moment.js used
+No moment.js used.
 
 ## Screenshots
 
@@ -31,22 +31,15 @@ yarn add react-date-picks
 
 ### Usage
 
-### With Formik
-
-### Override styles
-
-
-### basic use
 
 ```js
 
 import React, { useState } from 'react'
-import { DatePicker } from '../src'
-import '../assets/index.less'
+import DatePicker from 'react-date-picks'
 import dayjs from 'dayjs'
 
 const Sample: React.FC = () => {
-  const [value, setValue] = useState(dayjs(new Date(), 'YYYY M').format('YYYY M'))
+  const [value, setValue] = useState(dayjs().format())
   const handleChange = value => {
     setValue(value)
   }
@@ -56,12 +49,68 @@ const Sample: React.FC = () => {
     handleChange={handleChange}
     dateFormat="YYYY-M-DD"
     locale="ja"
-    placeholder="year month"
+    placeholder="year month picker"
   />
 )
 
 React.render(Sample, container)
 ```
+
+### With Formik
+
+```js
+
+import React from 'react'
+import dayjs from 'dayjs'
+import DatePicker from 'react-date-picks'
+import { Formik, Field } from 'formik'
+
+const Sample: React.FC = () => {
+  return (
+    <>
+      <Formik
+        initialValues={{ date: dayjs().format() }}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+          }, 400)
+        }}
+      >
+        {({ handleSubmit, isSubmitting }) => (
+          <form onSubmit={handleSubmit}>
+            <Field component={DatePickerWithFormik} required />
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </form>
+        )}
+      </Formik>
+    </>
+  )
+}
+
+const DatePickerWithFormik = ({ form: { setFieldValue, values } }) => {
+  return (
+    <DatePicker
+      value={values.date}
+      placeholder="year month"
+      yearMonthPicker={true}
+      handleChange={date => {
+        setFieldValue('date', date)
+      }}
+      locale="ja"
+    />
+  )
+}
+
+React.render(Sample, container)
+```
+
+
+### Override styles
+
+
 
 ## API
 
@@ -77,17 +126,6 @@ React.render(Sample, container)
 |locale | (optional) string | [IETF tag](https://en.wikipedia.org/wiki/IETF_language_tag) | 'en-ca' |
 |overrides | (optional) string | Styles for override | {} |
 |disabled | (optional) boolean | Whether input is disabled or not | false |
-
-
-### Methods
-
-| name     | description    | parameters | return      |
-|----------|----------------|----------|--------------|
-|focus     | focus select programmably | - | - |
-|blur     | blur select programmably | - | - |
-
-
-
 
 ## License
 
