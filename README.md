@@ -8,7 +8,7 @@ No moment.js used
 
 
 ## Demo
-(Online demo is available here)[#]
+[#](Online demo is available here)
 
 OR
 
@@ -31,17 +31,36 @@ yarn add react-date-picks
 
 ### Usage
 
+### With Formik
+
 ### Override styles
+
 
 ### basic use
 
 ```js
-import Select from 'react-date-picks';
 
-var c = (
-  <Select />
-);
-React.render(c, container);
+import React, { useState } from 'react'
+import { DatePicker } from '../src'
+import '../assets/index.less'
+import dayjs from 'dayjs'
+
+const Sample: React.FC = () => {
+  const [value, setValue] = useState(dayjs(new Date(), 'YYYY M').format('YYYY M'))
+  const handleChange = value => {
+    setValue(value)
+  }
+  return (
+  <DatePicker
+    value={value}
+    handleChange={handleChange}
+    dateFormat="YYYY-M-DD"
+    locale="ja"
+    placeholder="year month"
+  />
+)
+
+React.render(Sample, container)
 ```
 
 ## API
@@ -50,14 +69,14 @@ React.render(c, container);
 
 | name     | type    | description     | default  |
 |----------|-------|----------|--------------|
-|yearMonthPicker | boolean |  - | false |
-|handleChange | (target: string) => void | - | - |
-|value | string | - | - |
-|dateFormat | (optional) string | - | 'YYYY-MM-DDTHH:mm:ssZ' |
-|placeholder | (optional) string | - | - |
-|locale | (optional) string | - | 'en-ca' |
-|overrides | (optional) string | - | {} |
-|disabled | (optional) boolean | - | false |
+|yearMonthPicker | boolean |  Whether the year month picker | false |
+|handleChange | (target: string) => void | handleChange function | - |
+|value | string | Input value | - |
+|dateFormat | (optional) string | Input format based on [Unicode Technical Standard](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `MMM`, `MMMM`, `d`, `dd`. | 'YYYY-MM-DDTHH:mm:ssZ' |
+|placeholder | (optional) string | Input placeholder | - |
+|locale | (optional) string | [IETF tag](https://en.wikipedia.org/wiki/IETF_language_tag) | 'en-ca' |
+|overrides | (optional) string | Styles for override | {} |
+|disabled | (optional) boolean | Whether input is disabled or not | false |
 
 
 ### Methods
