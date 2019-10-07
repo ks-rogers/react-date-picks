@@ -1,20 +1,37 @@
 # react-date-picks
+A date picker for your React app.
 
+Pick days, months, years.
+No moment.js used
 
 ## Screenshots
 
 
-## Feature
+## Demo
+(Online demo is available here)[#]
 
-* support ie9,ie9+,chrome,firefox,safari
+OR
 
-### Keyboard
+```
+yarn
+yarn start
+```
 
+## Getting started
 
-## install
+### Compatibility
 
+You need to use React 16 or later in project.
 
-## Usage
+### Installation
+
+```
+yarn add react-date-picks
+```
+
+### Usage
+
+### Override styles
 
 ### basic use
 
@@ -29,12 +46,19 @@ React.render(c, container);
 
 ## API
 
-### Select props
+### Props
 
-| name     | description    | type     | default      |
-|----------|----------------|----------|--------------|
-|id | html id to set on the component wrapper | String | '' |
-|className | additional css class of root dom node | String | '' |
+| name     | type    | description     | default  |
+|----------|-------|----------|--------------|
+|yearMonthPicker | boolean |  - | false |
+|handleChange | (target: string) => void | - | - |
+|value | string | - | - |
+|dateFormat | (optional) string | - | 'YYYY-MM-DDTHH:mm:ssZ' |
+|placeholder | (optional) string | - | - |
+|locale | (optional) string | - | 'en-ca' |
+|overrides | (optional) string | - | {} |
+|disabled | (optional) boolean | - | false |
+
 
 ### Methods
 
@@ -45,30 +69,7 @@ React.render(c, container);
 
 
 
-## Development
-
-```
-yarn
-yarn start
-```
-
-## Example
-
-
-
-## Test Case
-
-```
-npm test
-```
-
-## Coverage
-
-```
-npm run coverage
-```
-
 
 ## License
 
-buraburaInc is released under the MIT license.
+K.S.Rogers is released under the MIT license.
