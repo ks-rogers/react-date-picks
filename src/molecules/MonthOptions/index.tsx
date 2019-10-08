@@ -31,7 +31,6 @@ export const MonthOptions: React.FC<MonthOptionsProps> = props => {
     for (let iM = 1; iM <= 12; iM += 1) {
       options.push(
         <MonthOption
-          href=""
           key={`month-${iM.toString()}`}
           onClick={e => {
             e.preventDefault()

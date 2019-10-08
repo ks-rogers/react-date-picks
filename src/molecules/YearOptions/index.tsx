@@ -30,7 +30,6 @@ export const YearOptions: React.FC<YearOptionsProps> = props => {
     for (let iY = 2019; iY > 2019 - 12; iY -= 1) {
       options.push(
         <YearOption
-          href=""
           key={`years-${iY.toString()}`}
           onClick={e => {
             e.preventDefault()

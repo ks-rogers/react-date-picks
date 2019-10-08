@@ -4,6 +4,7 @@ import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/over
 
 interface YearMonthOptionProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   overrides: ComponentOverrides
+  href?: string
 }
 
 const YearMonthOptionTemplate = {
