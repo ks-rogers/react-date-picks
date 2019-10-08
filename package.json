@@ -28,7 +28,7 @@
     "build:docs": "father doc build --storybook",
     "build": "father build",
     "storybook": "start-storybook",
-    "prepublishOnly": "npm run compile && np --no-cleanup --yolo --no-publish",
+    "prepublishOnly": "npm run build && np --no-cleanup --yolo --no-publish",
     "lint": "eslint src/ examples/ --ext .tsx,.ts,.jsx,.js --fix",
     "test": "father test",
     "now-build": "npm run build"
@@ -38,8 +38,12 @@
     "react-dom": "*"
   },
   "dependencies": {
+    "@types/react-is": "^16.7.1",
     "@types/styled-components": "4.1.18",
     "classnames": "2.x",
+    "formik": "^1.5.8",
+    "moment": "^2.24.0",
+    "react-is": "^16.10.1",
     "styled-components": "^4.4.0",
     "warning": "^4.0.3"
   },
