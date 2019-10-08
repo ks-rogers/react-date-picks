@@ -194,7 +194,7 @@ React.render(Sample, container)
 |handleChange | (target: string) => void | handleChange function | - |
 |value | string | Input value | - |
 |dateFormat | (optional) string | Input format based on [Unicode Technical Standard](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). Supported values are: `y`, `M`, `MM`, `MMM`, `MMMM`, `d`, `dd`. | 'YYYY-MM-DDTHH:mm:ssZ' |
-|placeholder | (optional) string | Input placeholder | - |
+|placeholder | string | Input placeholder | - |
 |locale | (optional) string | [IETF tag](https://en.wikipedia.org/wiki/IETF_language_tag) | 'en-ca' |
 |overrides | (optional) string | Styles for override | {} |
 |disabled | (optional) boolean | Whether input is disabled or not | false |
