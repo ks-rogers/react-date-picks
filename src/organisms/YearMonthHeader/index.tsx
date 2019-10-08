@@ -6,7 +6,6 @@ import { YearMonthButton } from '../../molecules'
 interface YearMonthHeaderProps extends HTMLAttributes<HTMLDivElement> {
   setYearSelectOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
-  setYearMonthPickerOpen: Dispatch<SetStateAction<boolean>>
   value: string
   overrides: ComponentOverrides
 }

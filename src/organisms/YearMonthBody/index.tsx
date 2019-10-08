@@ -6,6 +6,7 @@ import { YearOptions, MonthOptions } from '../../molecules'
 interface YearMonthBodyProps extends HTMLAttributes<HTMLDivElement> {
   handleChange: (target: string) => void
   setYearMonthPickerOpen: Dispatch<SetStateAction<boolean>>
+  setPickerOpen: Dispatch<SetStateAction<boolean>>
   setYearSelectOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string

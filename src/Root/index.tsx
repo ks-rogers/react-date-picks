@@ -126,7 +126,6 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
           <YearMonthHeader
             setYearSelectOpen={setYearSelectOpen}
             setMonthSelectOpen={setMonthSelectOpen}
-            setYearMonthPickerOpen={setYearMonthPickerOpen}
             value={value}
             overrides={overrides}
           />
@@ -134,6 +133,7 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
           <YearMonthBody
             handleChange={handleChange}
             setYearMonthPickerOpen={setYearMonthPickerOpen}
+            setPickerOpen={setDatePickerOpen}
             setYearSelectOpen={setYearSelectOpen}
             setMonthSelectOpen={setMonthSelectOpen}
             value={value}
