@@ -5,7 +5,6 @@ import { Divider } from '../atoms'
 import { DateFieldLabeled } from '../molecules'
 import { YearMonthHeader, YearMonthBody, CalendarHeader, CalendarBody } from '../organisms'
 import dayjs from 'dayjs'
-// import { default as dayjsLocale } from 'dayjs/locale/ja'
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   yearMonthPicker: boolean
