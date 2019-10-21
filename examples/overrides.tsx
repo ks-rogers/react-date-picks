@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
-import React, { useState, Fragment } from 'react'
+import * as React from 'react'
 import { DatePicker } from '../src'
 import '../assets/index.less'
-import dayjs from 'dayjs'
+import * as dayjs from 'dayjs'
 
 const ComponentsOptions = [
   'Root',
@@ -20,8 +19,8 @@ const ComponentsOptions = [
 ]
 
 const Test: React.FC = () => {
-  const [value, setValue] = useState(dayjs(new Date(), 'YYYY M').format('YYYY M'))
-  const [selectValue, setSelectValue] = useState('Root')
+  const [value, setValue] = React.useState(dayjs(new Date()).format('YYYY M'))
+  const [selectValue, setSelectValue] = React.useState('Root')
   const handleChange = (value: string) => {
     setValue(value)
   }
@@ -34,7 +33,7 @@ const Test: React.FC = () => {
       <div>
         {ComponentsOptions.map(data => {
           return (
-            <Fragment key={data}>
+            <React.Fragment key={data}>
               <label>{data}</label>
               <input
                 type="radio"
@@ -44,7 +43,7 @@ const Test: React.FC = () => {
                 checked={data === selectValue}
               />{' '}
               <br />
-            </Fragment>
+            </React.Fragment>
           )
         })}
       </div>
@@ -65,4 +64,3 @@ const Test: React.FC = () => {
 }
 
 export default Test
-/* eslint-enable */
