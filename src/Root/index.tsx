@@ -7,7 +7,7 @@ import { YearMonthHeader, YearMonthBody, CalendarHeader, CalendarBody } from '..
 import dayjs from 'dayjs'
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
-  yearMonthPicker: boolean
+  yearMonthPicker?: boolean
   handleChange: (target: string) => void
   value: string
   dateFormat?: string
