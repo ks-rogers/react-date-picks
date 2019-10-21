@@ -62,9 +62,8 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
 
   useEffect(() => {
     const load = async () => {
-      await import(`dayjs/locale/${locale}`).then(data => {
-        setLocaleMap(data.default)
-      })
+      const localeMap: any = await import(`dayjs/locale/${locale}`)
+      setLocaleMap(localeMap.default)
     }
     load()
   }, [locale])
@@ -92,8 +91,7 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
           if (yearMonthPicker) {
             setYearMonthPickerOpen(true)
             setYearSelectOpen(true)
-          }
-          if (!yearMonthPicker) {
+          } else {
             setDatePickerOpen(true)
           }
         }}

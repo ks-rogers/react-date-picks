@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { DatePicker } from '../src'
 import '../assets/index.less'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 const ComponentsOptions = [
   'Root',
@@ -19,8 +19,8 @@ const ComponentsOptions = [
 ]
 
 const Test: React.FC = () => {
-  const [value, setValue] = React.useState(dayjs(new Date()).format('YYYY M'))
-  const [selectValue, setSelectValue] = React.useState('Root')
+  const [value, setValue] = useState(dayjs(new Date()).format('YYYY M'))
+  const [selectValue, setSelectValue] = useState('Root')
   const handleChange = (value: string) => {
     setValue(value)
   }

@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { DatePicker } from '../src'
 import '../assets/index.less'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { Formik, Field } from 'formik'
 
 const Test: React.FC = () => {
