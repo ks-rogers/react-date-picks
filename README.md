@@ -201,4 +201,4 @@ React.render(Sample, container)
 
 ## License
 
-K.S.Rogers is released under the MIT license.
+react-date-picks is available under the MIT license. See the [LICENSE](./LICENSE.md) file for more info.
