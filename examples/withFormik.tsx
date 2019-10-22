@@ -13,7 +13,7 @@ const Test: React.FC = () => {
         below.{' '}
       </p>
       <Formik
-        initialValues={{ date: dayjs(new Date()).format('YYYY MM') }}
+        initialValues={{ date: dayjs().format('YYYY MM') }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2))

@@ -4,7 +4,7 @@ import '../assets/index.less'
 import dayjs from 'dayjs'
 
 const Test: React.FC = () => {
-  const [value, setValue] = useState(dayjs(new Date()).format('YYYY M'))
+  const [value, setValue] = useState(dayjs().format('YYYY M'))
   const handleChange = (value: string) => {
     setValue(value)
   }
