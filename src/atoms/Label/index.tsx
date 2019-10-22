@@ -7,6 +7,7 @@ interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const LabelTemplate = {
+  width: '60%',
   display: 'block',
   fontWeight: 600
 }

@@ -2,13 +2,14 @@ import React, { Dispatch, SetStateAction, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
 import { YearMonthOption as MonthOption } from '../../atoms'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 interface MonthOptionsProps extends HTMLAttributes<HTMLDivElement> {
   handleChange: (target: string) => void
-  setPickerOpen: Dispatch<SetStateAction<boolean>>
+  setYearMonthPickerOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string
+  dateFormat: string
   overrides: ComponentOverrides
 }
 
@@ -21,7 +22,7 @@ const MonthOptionsTemplate = {
 }
 
 export const MonthOptions: React.FC<MonthOptionsProps> = props => {
-  const { value, setPickerOpen, setMonthSelectOpen, handleChange, overrides } = props
+  const { value, setYearMonthPickerOpen, setMonthSelectOpen, handleChange, overrides, dateFormat } = props
 
   const StyledMonthOptions = styled.div(getOverrideCSSProperties(MonthOptionsTemplate, overrides.MonthOptions))
 
@@ -30,12 +31,15 @@ export const MonthOptions: React.FC<MonthOptionsProps> = props => {
     for (let iM = 1; iM <= 12; iM += 1) {
       options.push(
         <MonthOption
-          href=""
           key={`month-${iM.toString()}`}
           onClick={e => {
             e.preventDefault()
-            handleChange(moment(value, 'YYYY-M-DD').format(`YYYY-${iM}`))
-            setPickerOpen(false)
+            handleChange(
+              dayjs(value)
+                .set('month', iM - 1)
+                .format(dateFormat)
+            )
+            setYearMonthPickerOpen(false)
             setMonthSelectOpen(false)
           }}
           overrides={overrides}
