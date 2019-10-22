@@ -6,13 +6,12 @@ import { YearMonthButton } from '../../molecules'
 interface YearMonthHeaderProps extends HTMLAttributes<HTMLDivElement> {
   setYearSelectOpen: Dispatch<SetStateAction<boolean>>
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
-  setPickerOpen: Dispatch<SetStateAction<boolean>>
   value: string
   overrides: ComponentOverrides
 }
 
 const StyledYearMonthHeaderTemplate = {
-  padding: '16px'
+  padding: '0 0 16px 0'
 }
 
 export const YearMonthHeader: React.FC<YearMonthHeaderProps> = props => {

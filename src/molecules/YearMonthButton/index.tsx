@@ -1,6 +1,6 @@
 import React, { Dispatch, HTMLAttributes, SetStateAction } from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { getOverrideCSSProperties, ComponentOverrides } from '../../helpers/overrides'
 import { SelectButton } from '../../atoms'
 interface YearMonthButtonProps extends HTMLAttributes<HTMLDivElement> {
@@ -28,7 +28,7 @@ export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
           setMonthSelectOpen(false)
         }}
       >
-        {moment(value).format('YYYY')}
+        {dayjs(value).format('YYYY')}
       </SelectButton>
       <SelectButton
         overrides={overrides}
@@ -37,7 +37,7 @@ export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
           setMonthSelectOpen(true)
         }}
       >
-        {moment(value).format('M')}
+        {dayjs(value).format('M')}
       </SelectButton>
     </StyledYearMonthButton>
   )
