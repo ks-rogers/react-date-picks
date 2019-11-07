@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "react-date-picks",
+  "name": "@ks-rogers/react-date-picks",
   "builds": [
     {
       "src": "package.json",

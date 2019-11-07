@@ -1,5 +1,5 @@
 {
-  "name": "react-date-picks",
+  "name": "@ks-rogers/react-date-picks",
   "version": "0.1.0",
   "description": "React Date Pickers",
   "keywords": [
@@ -17,7 +17,7 @@
   "homepage": "http://github.com/buraburaInc",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-date-picks"
+    "url": "git@github.com:@ks-rogers/react-date-picks"
   },
   "bugs": {
     "url": "http://github.com/buraburaInc"

@@ -1,4 +1,4 @@
-# react-date-picks
+# @ks-rogers/react-date-picks
 A date picker for your React app.
 
 Pick days, months, years.
@@ -26,7 +26,7 @@ You need to use React 16 or later in project.
 ### Installation
 
 ```
-yarn add react-date-picks
+yarn add @ks-rogers/react-date-picks
 ```
 
 ### Usage
@@ -35,7 +35,7 @@ yarn add react-date-picks
 ```js
 
 import React, { useState } from 'react'
-import DatePicker from 'react-date-picks'
+import DatePicker from '@ks-rogers/react-date-picks'
 import dayjs from 'dayjs'
 
 const Sample: React.FC = () => {
@@ -62,7 +62,7 @@ React.render(Sample, container)
 
 import React from 'react'
 import dayjs from 'dayjs'
-import DatePicker from 'react-date-picks'
+import DatePicker from '@ks-rogers/react-date-picks'
 import { Formik, Field } from 'formik'
 
 const Sample: React.FC = () => {
@@ -118,7 +118,7 @@ Please refer to the code snippet below.
 
 ```js
 import React, { useState, Fragment } from 'react'
-import DatePicker from 'react-date-picks'
+import DatePicker from '@ks-rogers/react-date-picks'
 import dayjs from 'dayjs'
 
 const ComponentsOptions = [
@@ -201,4 +201,4 @@ React.render(Sample, container)
 
 ## License
 
-react-date-picks is available under the MIT license. See the [LICENSE](./LICENSE.md) file for more info.
+@ks-rogers/react-date-picks is available under the MIT license. See the [LICENSE](./LICENSE.md) file for more info.

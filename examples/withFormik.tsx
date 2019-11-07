@@ -9,8 +9,8 @@ const Test: React.FC = () => {
     <div>
       <h2>With formik</h2>
       <p>
-        react-date-picks can be used with Formik by utilising setFieldValue. For more detail, refer to the source tab
-        below.{' '}
+        @ks-rogers/react-date-picks can be used with Formik by utilising setFieldValue. For more detail, refer to the
+        source tab below.{' '}
       </p>
       <Formik
         initialValues={{ date: dayjs().format('YYYY MM') }}
