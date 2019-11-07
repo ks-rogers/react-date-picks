@@ -13,9 +13,9 @@ addDecorator(withSource);
 
 addDecorator(
   withOptions({
-    name: 'react-date-picks',
+    name: '@ks-rogers/react-date-picks',
     url: 'http://github.com/buraburaInc',
-    title:'react-date-picks'
+    title:'@ks-rogers/react-date-picks'
   })
 );
 
