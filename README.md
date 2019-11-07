@@ -8,7 +8,7 @@ No moment.js used.
 
 
 ## Demo
-[#](Online demo is available here)
+[Online demo is available here](https://ks-rogers.github.io/react-date-picks/?selectedKind=%40ks-rogers%2Freact-date-picks&selectedStory=readMe&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel)
 
 OR
 
