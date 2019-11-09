@@ -8,6 +8,8 @@ interface YearMonthHeaderProps extends HTMLAttributes<HTMLDivElement> {
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string
   overrides: ComponentOverrides
+  yearSelectOpen: boolean
+  monthSelectOpen: boolean
 }
 
 const StyledYearMonthHeaderTemplate = {
@@ -15,7 +17,7 @@ const StyledYearMonthHeaderTemplate = {
 }
 
 export const YearMonthHeader: React.FC<YearMonthHeaderProps> = props => {
-  const { overrides, setYearSelectOpen, setMonthSelectOpen, value } = props
+  const { overrides, setYearSelectOpen, setMonthSelectOpen, value, yearSelectOpen, monthSelectOpen } = props
 
   const StyledYearMonthHeader = styled.div(
     getOverrideCSSProperties(StyledYearMonthHeaderTemplate, overrides.YearMonthHeader)
@@ -28,6 +30,8 @@ export const YearMonthHeader: React.FC<YearMonthHeaderProps> = props => {
         setMonthSelectOpen={setMonthSelectOpen}
         value={value}
         overrides={overrides}
+        yearSelectOpen={yearSelectOpen}
+        monthSelectOpen={monthSelectOpen}
       />
     </StyledYearMonthHeader>
   )

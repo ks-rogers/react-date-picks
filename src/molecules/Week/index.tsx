@@ -78,6 +78,7 @@ export const Week: React.FC<WeekProps> = props => {
               setDatePickerOpen(false)
             }}
             key={`${d}-${i.toString()}`}
+            style={{ lineHeight: '14px' }}
           >
             {d}
           </tr>

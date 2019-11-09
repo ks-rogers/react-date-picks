@@ -25,23 +25,24 @@ const RootTemplate = {
   padding: '24px',
   background: '#fff',
   width: '380px',
+  fontSize: '14px',
   '&::before': {
     content: '""',
     position: 'absolute',
     left: '20px',
     top: '-15px',
-    borderRight: '15px solid transparent',
+    borderRight: '18px solid transparent',
     borderBottom: '15px solid #cccccc',
-    borderLeft: '15px solid transparent'
+    borderLeft: '18px solid transparent'
   },
   '&::after': {
     content: '""',
     position: 'absolute',
     left: '20px',
     top: '-14px',
-    borderRight: '15px solid transparent',
+    borderRight: '18px solid transparent',
     borderBottom: '15px solid #ffffff',
-    borderLeft: '15px solid transparent'
+    borderLeft: '18px solid transparent'
   }
 }
 
@@ -67,9 +68,9 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
     load()
   }, [locale])
 
-  const [yearMonthPickerOpen, setYearMonthPickerOpen] = useState(false)
+  const [yearMonthPickerOpen, setYearMonthPickerOpen] = useState(true)
   const [datePickerOpen, setDatePickerOpen] = useState(false)
-  const [yearSelectOpen, setYearSelectOpen] = useState(false)
+  const [yearSelectOpen, setYearSelectOpen] = useState(true)
   const [monthSelectOpen, setMonthSelectOpen] = useState(false)
   const StyledRoot = styled.div(getOverrideCSSProperties(RootTemplate, overrides.Root))
 
@@ -125,6 +126,8 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
             setMonthSelectOpen={setMonthSelectOpen}
             value={value}
             overrides={overrides}
+            yearSelectOpen={yearSelectOpen}
+            monthSelectOpen={monthSelectOpen}
           />
           <Divider overrides={overrides} />
           <YearMonthBody

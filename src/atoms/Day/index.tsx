@@ -7,7 +7,7 @@ interface DayProps extends TdHTMLAttributes<HTMLTableDataCellElement> {
 }
 
 const DayTemplate = {
-  height: '52px',
+  padding: ' 0.9em 0',
   border: '1px solid #cccccc',
   textAlign: 'center',
   cursor: 'pointer',

@@ -8,6 +8,8 @@ interface YearMonthButtonProps extends HTMLAttributes<HTMLDivElement> {
   setMonthSelectOpen: Dispatch<SetStateAction<boolean>>
   value: string
   overrides: ComponentOverrides
+  yearSelectOpen: boolean
+  monthSelectOpen: boolean
 }
 
 const YearMonthButtonTemplate = {
@@ -15,7 +17,7 @@ const YearMonthButtonTemplate = {
 }
 
 export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
-  const { setYearSelectOpen, setMonthSelectOpen, value, overrides } = props
+  const { setYearSelectOpen, setMonthSelectOpen, value, overrides, yearSelectOpen, monthSelectOpen } = props
 
   const StyledYearMonthButton = styled.div(getOverrideCSSProperties(YearMonthButtonTemplate, overrides.YearMonthButton))
 
@@ -23,6 +25,7 @@ export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
     <StyledYearMonthButton>
       <SelectButton
         overrides={overrides}
+        active={yearSelectOpen}
         onClick={() => {
           setYearSelectOpen(true)
           setMonthSelectOpen(false)
@@ -32,6 +35,7 @@ export const YearMonthButton: React.FC<YearMonthButtonProps> = props => {
       </SelectButton>
       <SelectButton
         overrides={overrides}
+        active={monthSelectOpen}
         onClick={() => {
           setYearSelectOpen(false)
           setMonthSelectOpen(true)

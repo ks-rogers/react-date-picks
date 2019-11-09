@@ -7,7 +7,7 @@ interface DayBlankProps extends TdHTMLAttributes<HTMLTableDataCellElement> {
 }
 
 const DayBlankTemplate = {
-  height: '52px',
+  padding: ' 0.9em 0',
   border: 'none'
 }
 
