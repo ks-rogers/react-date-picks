@@ -14,13 +14,9 @@
     "es",
     "lib"
   ],
-  "homepage": "http://github.com/buraburaInc",
   "repository": {
     "type": "git",
     "url": "git@github.com:@ks-rogers/react-date-picks"
-  },
-  "bugs": {
-    "url": "http://github.com/buraburaInc"
   },
   "license": "MIT",
   "scripts": {
