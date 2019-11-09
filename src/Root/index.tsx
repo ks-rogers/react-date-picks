@@ -68,7 +68,7 @@ export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
     load()
   }, [locale])
 
-  const [yearMonthPickerOpen, setYearMonthPickerOpen] = useState(true)
+  const [yearMonthPickerOpen, setYearMonthPickerOpen] = useState(false)
   const [datePickerOpen, setDatePickerOpen] = useState(false)
   const [yearSelectOpen, setYearSelectOpen] = useState(true)
   const [monthSelectOpen, setMonthSelectOpen] = useState(false)
