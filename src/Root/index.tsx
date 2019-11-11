@@ -6,7 +6,7 @@ import { DateFieldLabeled } from '../molecules'
 import { YearMonthHeader, YearMonthBody, CalendarHeader, CalendarBody } from '../organisms'
 import dayjs from 'dayjs'
 
-interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   yearMonthPicker?: boolean
   handleChange: (target: string) => void
   value: string
@@ -46,7 +46,7 @@ const RootTemplate = {
   }
 }
 
-export const DatePicker: React.FC<RootProps> = (props: RootProps) => {
+export const DatePicker: React.FC<DatePickerProps> = (props: DatePickerProps) => {
   const {
     disabled = false,
     overrides = {},
