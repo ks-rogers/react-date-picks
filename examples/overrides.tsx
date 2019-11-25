@@ -52,7 +52,7 @@ const Test: React.FC = () => {
         value={value}
         handleChange={handleChange}
         yearMonthPicker={true}
-        placeholder="year month"
+        placeholder="overrides example"
         overrides={{
           [selectValue]: {
             style: { backgroundColor: '#F7BFA5', padding: '15px' }

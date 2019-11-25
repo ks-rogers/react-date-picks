@@ -38,7 +38,7 @@ const DatePickerWithFormik = ({ form: { setFieldValue, values } }) => {
   return (
     <DatePicker
       value={values.date}
-      placeholder="year month"
+      placeholder="withFormik example"
       yearMonthPicker={true}
       handleChange={(date: string) => {
         setFieldValue('date', date)

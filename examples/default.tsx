@@ -11,7 +11,7 @@ const Test: React.FC = () => {
   return (
     <div>
       <h2>Sample Components Example</h2>
-      <DatePicker value={value} handleChange={handleChange} dateFormat="YYYY M" placeholder="year month" />
+      <DatePicker value={value} handleChange={handleChange} dateFormat="YYYY MM DD" placeholder="date picker" />
     </div>
   )
 }
