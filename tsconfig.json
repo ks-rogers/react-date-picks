@@ -2,7 +2,7 @@
    "compilerOptions":{
       "target":"es6",
       "moduleResolution":"node",
-      "module":"commonjs",
+      "module":"esnext",
       "declaration":true,
       "noLib":false,
       "emitDecoratorMetadata":true,
