@@ -16,7 +16,7 @@ const Test: React.FC = () => {
         handleChange={handleChange}
         dateFormat="YYYY-M-DD"
         locale="ja"
-        placeholder="year month"
+        placeholder="date picker example"
       />
     </div>
   )

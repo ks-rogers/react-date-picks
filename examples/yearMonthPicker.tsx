@@ -17,7 +17,7 @@ const Test: React.FC = () => {
         yearMonthPicker={true}
         dateFormat="YYYY-M-DD"
         locale="ja"
-        placeholder="year month"
+        placeholder="year month example"
       />
     </div>
   )
