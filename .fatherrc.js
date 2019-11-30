@@ -5,4 +5,11 @@ export default {
     eslint: true,
     prettier: true,
   },
+  extraBabelPlugins: [
+    ['babel-plugin-import', {
+      libraryName: 'babel-plugin-styled-components',
+      libraryDirectory: 'es',
+      style: true,
+    }],
+  ],
 };
