@@ -199,6 +199,14 @@ React.render(Sample, container)
 |overrides | (optional) string | Styles for override | {} |
 |disabled | (optional) boolean | Whether input is disabled or not | false |
 
+## How to use with Next.js
+### Recommendation
+Next.js 9.2.2 or later
+
+### Handling styled-components problem
+If you already use styled-components in Next.js project, `several instances problem` may occur.  
+To avoid the problem, please refer to [styled-components docs](https://styled-components.com/docs/faqs#why-am-i-getting-a-warning-about-several-instances-of-module-on-the-page).
+
 ## License
 
 @ks-rogers/react-date-picks is available under the MIT license. See the [LICENSE](./LICENSE.md) file for more info.
